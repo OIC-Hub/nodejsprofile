@@ -1,0 +1,33 @@
+<%- include('../includes/header.ejs') %>
+<link href="/css/admin-user.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <%- include('../includes/navbar.ejs') %>
+    </header>
+    <h2>Update User</h2>
+    <%
+    
+    %>
+    <form action="/update-user" method="post">
+     <input type="hidden" value="<%= user[0].id %>" name="id"> 
+        <p>
+    <label>Name</label> <br>
+    <input type="text" name="name" value="<%= user[0].name %>">
+   </p>
+   <p>
+    <label>Phone</label> <br>
+    <input type="tel" name="phone" value="<%= user[0].phone %>">
+   </p>
+   <p>
+    <label>Email</label> <br>
+    <input type="email" name="email" value="<%= user[0].email %>">
+   </p>
+   <p>
+    <label>Image</label> <br>
+    <input type="url" name="image" value="<%= user[0].image %>">
+   </p>
+<button type="submit">Update</button>
+    </form>
+</body>
+</html>

@@ -1,18 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Home</title>
+ <%- include('../includes/header.ejs') %>
+ <link href="/css/admin-user.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <ul>
-            <li><a href="/admin">Home</a> </li>  
-            <li><a href="/add-user">Add User</a></li>
-        </ul>
-    </header>
+    <%- include('../includes/navbar.ejs') %>
     <h2>Admin Home</h2>
+    <div class="container">
+    <% if(users.length > 0){
+        for(let user of users){ %>
+            <div class="user-container">
+                <div class="img-container">
+               <img src="<%=user.image %>" alt="Profile Picture">
+                </div>
+                <div class="user-name"><%= user.name %></div>
+                <div class="user-email"><%= user.email %></div>
+                <div class="user-phone"><%= user.phone %></div>
+                <div class="btn-container">
+                    <a href="/admin-update-user/<%= user.id %>" class="btn">Update</a>
+                     <form action="/admin-delete-user" method="post">
+                        <input type="hidden" name="userId" value="<%= user.id %>">
+                    <button type="submit" class="btn">Delete</button>
+                    </form>
+                </div>
+            </div>
+
+
+     <%   }
+    }
+    else{ %>
+
+        <h2> No Users available</h2>
+
+
+   <% } %>
+
+
+</div>
+
 </body>
 </html>
